@@ -1,0 +1,37 @@
+---
+title: "Cleaning Data"
+author: "Brooks Coetzee III"
+date: "2022-11-16"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(readxl)
+```
+
+Combining Data:
+```{r}
+NBA1 <- read_excel("NBA-2018-2019-Player-BoxScore-Dataset.xlsx")
+NBA2 <- read_excel("NBA-2019-2020-Player-BoxScore-Dataset.xlsx")
+NBA3 <- read_excel("NBA-2020-2021-Player-BoxScore-Dataset.xlsx")
+NBA4 <- read_excel("NBA-2021-2022-Player-BoxScore-Dataset.xlsx")
+
+NBA1 <- as.data.frame(NBA1)
+NBA2 <- as.data.frame(NBA2)
+NBA3 <- as.data.frame(NBA3)
+NBA4 <- as.data.frame(NBA4)
+```
+
+```{r}
+#Combine each dataframe into 1
+MasterSheet <- rbind(NBA1, NBA2, NBA3, NBA4)
+```
+
+Write/export to csv
+```{r}
+library(tidyverse)
+write_csv(MasterSheet, "MasterSheet.csv")
+```
+
